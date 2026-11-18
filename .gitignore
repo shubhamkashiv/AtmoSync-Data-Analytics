@@ -1,0 +1,2 @@
+# Superset environment secrets
+deployment/superset/.env
