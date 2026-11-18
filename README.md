@@ -233,7 +233,7 @@ Streamlit Dashboard
 Email Alerts
 🚀 Running the Project
 Clone Repository
-git clone https://github.com/sarthak-raj08/AtmoSync-Micro-Climate-Arbitrage-Analytics.git
+git clone 
 Create Virtual Environment
 python -m venv venv
 Activate Environment
