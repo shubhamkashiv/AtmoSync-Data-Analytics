@@ -74,6 +74,8 @@ services:
     user: "root"
 
   superset-worker:
+    healthcheck:
+      disable: true
     image: atmosync-superset:local
     container_name: atmosync_superset_worker
     command: ["/app/docker/docker-bootstrap.sh", "worker"]
@@ -93,6 +95,8 @@ services:
     user: "root"
 
   superset-worker-beat:
+    healthcheck:
+      disable: true
     image: atmosync-superset:local
     container_name: atmosync_superset_worker_beat
     command: ["/app/docker/docker-bootstrap.sh", "beat"]
