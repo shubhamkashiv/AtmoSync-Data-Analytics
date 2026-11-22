@@ -1,0 +1,34 @@
+AtmoSync Weather Data Validation Report
+========================================
+Total records: 483
+Total columns: 12
+
+Missing values per column:
+- City: 0
+- Country: 0
+- Elevation: 0
+- Timezone: 0
+- Coordinates: 0
+- DATE: 0
+- TMIN: 0
+- TAVG: 0
+- TMAX: 0
+- PRCP: 0
+- WSPD: 0
+- PRES: 0
+
+Invalid numeric values per column:
+- TMIN: 0
+- TAVG: 0
+- TMAX: 0
+- PRCP: 0
+- WSPD: 0
+
+Duplicate count: 0
+Invalid temperature records: 2
+Invalid rainfall records: 0
+Invalid wind speed records: 0
+Invalid date records: 0
+Suspicious records identified: 2
+
+Overall validation status: FAIL
