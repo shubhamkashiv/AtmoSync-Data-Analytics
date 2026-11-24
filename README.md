@@ -261,6 +261,25 @@ dbt test --profiles-dir .
 dbt docs generate --profiles-dir .
 
 dbt docs serve --profiles-dir .
+
+### Run Apache Superset with Docker
+
+Docker Desktop must be running before starting Superset.
+
+```powershell
+Copy-Item .env.example .env
+docker compose -f docker-compose.superset.yml up -d --build
+```
+
+The stack starts PostgreSQL, Redis, Superset, a Celery worker, and a Celery beat scheduler.
+
+Update the credentials in `.env` before starting the stack. Open `http://localhost:8090` and sign in with the `SUPERSET_ADMIN_USERNAME` and `SUPERSET_ADMIN_PASSWORD` values.
+
+Stop the Superset container with:
+
+```powershell
+docker compose -f docker-compose.superset.yml down
+```
 📷 Screenshots
 Dashboard
 (Add Screenshot)
