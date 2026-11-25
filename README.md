@@ -15,7 +15,7 @@ AtmoSync Micro-Climate Arbitrage Analytics Project
 - analysis/ – Exploratory Data Analysis
 - insights/ – Key findings and statistical analysis
 
-### 3. Rishikesh – Data Visualization
+### 3. Rushikesh – Data Visualization
 - dashboard/ – Dashboard development
 - visualizations/ – Charts, graphs and KPI analysis
 
@@ -106,4 +106,39 @@ The existing CSV generator is unchanged and can still be run separately:
 
 ```powershell
 python -m iot_simulator.generate_data
+```
+
+## Project Setup
+
+### Prerequisites
+
+- Python
+- Docker Desktop
+- Git
+
+### Clone the repository
+
+```powershell
+git clone https://github.com/shubhamkashiv/AtmoSync-Data-Analytics.git
+cd AtmoSync-Data-Analytics
+```
+
+### Install dependencies
+
+From the repository root, run:
+
+```powershell
+pip install -r requirements.txt
+```
+
+### Start Kafka
+
+```powershell
+docker compose up -d
+```
+
+Check the Kafka containers:
+
+```powershell
+docker compose ps
 ```
