@@ -142,3 +142,70 @@ Check the Kafka containers:
 ```powershell
 docker compose ps
 ```
+
+## Kafka Sensor Data Pipeline
+
+The local pipeline streams simulated refrigerated-container sensor readings
+through Kafka:
+
+1. The Python IoT simulator generates readings for three containers.
+2. The data validator checks required fields, ISO 8601 timestamps, and numeric
+   sensor values.
+3. The Kafka producer validates each generated reading and publishes valid
+   readings as JSON.
+4. Messages are published to the `atmosync.sensor-readings` topic.
+5. The Kafka consumer reads messages and deserializes their keys and JSON
+   values.
+6. Malformed JSON messages are logged and skipped so the consumer can continue
+   with subsequent messages.
+
+### Prerequisites
+
+- Python with the project dependencies installed.
+- Docker Desktop with Docker Compose available.
+
+Install the Python dependencies from the repository root:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+### Start Kafka
+
+From the repository root, start the Apache Kafka 4.4.0 broker:
+
+```powershell
+docker compose up -d
+```
+
+The Compose service runs Kafka in KRaft mode and is available to the local
+Python applications at `127.0.0.1:9092`.
+
+### Run the consumer
+
+In Terminal 1, from the repository root:
+
+```powershell
+python -m pipeline.kafka_consumer
+```
+
+### Run the producer
+
+In Terminal 2, from the repository root:
+
+```powershell
+python -m pipeline.kafka_producer
+```
+
+The producer reports sent and rejected readings, then displays a summary of
+generated, sent, and rejected totals. Stop the consumer with `Ctrl+C`.
+
+### Run unit tests
+
+From the repository root:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+The current test suite completes with `Ran 12 tests` and `OK`.
