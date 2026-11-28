@@ -60,7 +60,13 @@ class KafkaConsumerDeserializationTests(unittest.TestCase):
             [],
             b'{"container_id": "CONTAINER-001",',
         )
-        valid_value = {"container_id": "CONTAINER-002", "temperature": 5.1}
+        valid_value = {
+            "container_id": "CONTAINER-002",
+            "timestamp": "2026-11-23T21:32:27.431",
+            "temperature": 5.1,
+            "humidity": 72.16,
+            "vibration": 0.21,
+        }
         messages = [
             SimpleNamespace(
                 topic=kafka_consumer.TOPIC,
@@ -98,6 +104,8 @@ class KafkaConsumerDeserializationTests(unittest.TestCase):
         )
         self.assertIn("CONTAINER-002", printed_output)
         self.assertIn('"temperature": 5.1', printed_output)
+        self.assertIn("Environmental baseline assessment:", printed_output)
+        self.assertIn('"status": "NORMAL"', printed_output)
 
 
 if __name__ == "__main__":

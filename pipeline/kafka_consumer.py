@@ -8,6 +8,8 @@ from kafka import KafkaConsumer
 from kafka.errors import KafkaError
 from kafka.serializer import DefaultSerializer, JsonSerializer
 
+from pipeline.spoilage_predictor import assess_spoilage_risk
+
 
 BROKER = "127.0.0.1:9092"
 TOPIC = "atmosync.sensor-readings"
@@ -65,6 +67,9 @@ def main() -> int:
 
             print(f"Key: {message.key}")
             print(json.dumps(message.value, indent=2), flush=True)
+            assessment = assess_spoilage_risk(message.value)
+            print("Environmental baseline assessment:")
+            print(json.dumps(assessment, indent=2), flush=True)
     except KeyboardInterrupt:
         print("\nConsumer stopped.")
     except KafkaError as error:
